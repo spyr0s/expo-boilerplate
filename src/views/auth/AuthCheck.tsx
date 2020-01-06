@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { NavigationStackScreenProps } from 'react-navigation-stack';
 import { Text } from 'react-native';
 import Container from 'app/app/components/containers/Container';
+import i18n from 'i18n-js';
 
 export interface AuthCheckNavParams {}
 export interface AuthCheckProps {}
@@ -27,7 +28,7 @@ class AuthCheck extends React.Component<Props, State> {
     render() {
         return (
             <Container>
-                <Text> AUTH CHECK</Text>
+                <Text>{i18n.t('AUTH_CHECK')}</Text>
             </Container>
         );
     }

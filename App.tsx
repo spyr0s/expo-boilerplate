@@ -10,7 +10,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { AppearanceProvider, Appearance } from 'react-native-appearance';
 import { ThemeProvider } from 'react-native-elements';
 import Navigator from 'app/app/navigation/Navigator';
+import * as en from 'app/app/tranlsations/english.json';
+import * as el from 'app/app/tranlsations/greek.json';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
 
+i18n.fallbacks = true;
+i18n.translations = { el, en };
+i18n.locale = Localization.locale;
 enableScreens();
 const scheme = Appearance.getColorScheme();
 
