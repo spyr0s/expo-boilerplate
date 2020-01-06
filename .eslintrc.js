@@ -9,6 +9,7 @@ module.exports = {
                     ['app', './src'],
                     ['redx', './src/app/redux'],
                     ['components', './src/app/components'],
+                    ['styles', './src/app/styles'],
                     ['views', './src/views'],
                     ['services', './src/services']
                 ],
@@ -25,6 +26,7 @@ module.exports = {
     ],
     rules: {
         'no-shadow': 0,
-        'react/jsx-props-no-spreading': 0
+        'react/jsx-props-no-spreading': 0,
+        'no-nested-ternary': 0
     }
 };
