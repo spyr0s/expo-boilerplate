@@ -108,7 +108,6 @@ export const cardStyle = (
 };
 
 export const createTheme = (colors: ThemeColors): Theme => {
-    console.log({ colors });
     return {
         colors,
         Text: {

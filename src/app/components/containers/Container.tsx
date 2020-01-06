@@ -26,7 +26,6 @@ const Container = (props: Props) => {
     const { withPadding, children, contentContainerStyle } = props;
     const padding = withPadding ? SPACING.medium : 0;
     const { theme } = useContext(ThemeContext) as ThemeProps<Theme>;
-    console.log({ cont: theme.colors });
     const backgroundColor = theme.colors.surface;
     return (
         <SafeAreaView style={[styles.safe, { backgroundColor }]}>
