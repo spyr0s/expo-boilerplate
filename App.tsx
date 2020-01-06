@@ -1,20 +1,43 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { APP_STARTED } from 'redx/app/actions';
+import { StatusBar } from 'react-native';
+import { appStarted } from 'redx/app/actions';
+import { enableScreens } from 'react-native-screens';
+import { Persistor } from 'redux-persist';
+import configureStore from 'app/app/redux/store';
+import { BPInitialState } from 'app/app/redux/redux';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { AppearanceProvider, Appearance } from 'react-native-appearance';
+import { ThemeProvider } from 'react-native-elements';
+import Navigator from 'app/app/navigation/Navigator';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
-export default function App() {
-    return (
-        <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <Text>{APP_STARTED}</Text>
-        </View>
+enableScreens();
+const scheme = Appearance.getColorScheme();
+
+export default () => {
+    const persist: { store: any; persistor: Persistor } = configureStore(
+        BPInitialState,
+        () => {
+            persist.store.dispatch(appStarted());
+        }
     );
-}
+    return (
+        <Provider store={persist.store}>
+            <PersistGate persistor={persist.persistor}>
+                <AppearanceProvider>
+                    <StatusBar
+                        showHideTransition="slide"
+                        barStyle={
+                            scheme === 'light'
+                                ? 'light-content'
+                                : 'dark-content'
+                        }
+                    />
+                    <ThemeProvider>
+                        <Navigator />
+                    </ThemeProvider>
+                </AppearanceProvider>
+            </PersistGate>
+        </Provider>
+    );
+};

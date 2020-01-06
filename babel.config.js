@@ -11,8 +11,8 @@ module.exports = api => {
                         app: './src',
                         redx: './src/app/redux',
                         components: './src/app/components',
-                        views: './src/app/views',
-                        services: './src/app/services'
+                        views: './src/views',
+                        services: './src/services'
                     },
                     extensions: ['.js', '.ts', '.tsx', '.ios.js', '.android.js']
                 }

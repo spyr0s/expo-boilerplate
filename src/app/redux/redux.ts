@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { app, initialAppState, AppState } from './app/reducers';
 
-export interface FTState {
+export interface BPState {
     app: AppState;
 }
-export const FTInitialState: FTState = {
+export const BPInitialState: BPState = {
     app: initialAppState
 };
 const state = combineReducers({

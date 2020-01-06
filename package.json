@@ -10,6 +10,7 @@
         "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./"
     },
     "dependencies": {
+        "@react-native-community/masked-view": "0.1.5",
         "expo": "~36.0.0",
         "moment": "^2.24.0",
         "normalizr": "^3.4.1",
@@ -21,6 +22,7 @@
         "react-native-gesture-handler": "^1.5.3",
         "react-native-reanimated": "^1.4.0",
         "react-native-redash": "^9.5.3",
+        "react-native-safe-area-context": "0.6.0",
         "react-native-screens": "2.0.0-alpha.12",
         "react-native-web": "~0.11.7",
         "react-navigation": "^4.0.10",
@@ -41,6 +43,7 @@
         "@react-native-community/eslint-plugin": "^1.0.0",
         "@types/react": "~16.9.0",
         "@types/react-native": "~0.60.23",
+        "@types/react-redux": "^7.1.5",
         "@types/redux-api-middleware": "^3.0.7",
         "@types/redux-logger": "^3.0.7",
         "@types/tinycolor2": "^1.4.2",

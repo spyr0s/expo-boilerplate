@@ -9,8 +9,8 @@ module.exports = {
                     ['app', './src'],
                     ['redx', './src/app/redux'],
                     ['components', './src/app/components'],
-                    ['views', './src/app/views'],
-                    ['services', './src/app/services']
+                    ['views', './src/views'],
+                    ['services', './src/services']
                 ],
                 extensions: ['.js', '.ts', '.tsx', '.d.ts', '.json']
             }
@@ -22,5 +22,9 @@ module.exports = {
         'prettier',
         'prettier/@typescript-eslint',
         'prettier/react'
-    ]
+    ],
+    rules: {
+        'no-shadow': 0,
+        'react/jsx-props-no-spreading': 0
+    }
 };
