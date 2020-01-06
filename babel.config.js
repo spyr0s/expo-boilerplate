@@ -8,7 +8,11 @@ module.exports = api => {
                 {
                     root: ['./src'],
                     alias: {
-                        app: './src'
+                        app: './src',
+                        redx: './src/app/redux',
+                        components: './src/app/components',
+                        views: './src/app/views',
+                        services: './src/app/services'
                     },
                     extensions: ['.js', '.ts', '.tsx', '.ios.js', '.android.js']
                 }

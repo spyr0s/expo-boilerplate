@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { APP_STARTED } from 'app/app/redux/app/actions';
+import { APP_STARTED } from 'redx/app/actions';
 
 const styles = StyleSheet.create({
     container: {

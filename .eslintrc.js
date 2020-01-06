@@ -5,7 +5,13 @@ module.exports = {
     settings: {
         'import/resolver': {
             alias: {
-                map: [['app', './src']],
+                map: [
+                    ['app', './src'],
+                    ['redx', './src/app/redux'],
+                    ['components', './src/app/components'],
+                    ['views', './src/app/views'],
+                    ['services', './src/app/services']
+                ],
                 extensions: ['.js', '.ts', '.tsx', '.d.ts', '.json']
             }
         }
