@@ -6,7 +6,11 @@
         "moduleResolution": "node",
         "noEmit": true,
         "skipLibCheck": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": "./",
+        "paths": {
+            "app/*": ["./src/*"]
+        }
     },
     "exclude": ["__tests__/**/*-test.ts"]
 }

@@ -1,4 +1,4 @@
-import { APP_STARTED, AppAction } from './actions';
+import { APP_STARTED, AppAction } from 'app/app/redux/app/actions';
 
 export interface AppState {
     appStarted: boolean;
