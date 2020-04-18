@@ -47,6 +47,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
+        "@babel/plugin-proposal-optional-chaining": "^7.9.0",
         "@react-native-community/eslint-config": "^0.0.6",
         "@react-native-community/eslint-plugin": "^1.0.0",
         "@types/i18n-js": "^3.0.1",
@@ -71,6 +72,7 @@
         "husky": "^3.1.0",
         "prettier": "^1.19.1",
         "pretty-quick": "^2.0.1",
+        "react-native-svg-transformer": "^0.14.3",
         "typescript": "~3.6.3"
     },
     "private": true,

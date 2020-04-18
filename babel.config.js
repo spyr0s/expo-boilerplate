@@ -17,7 +17,8 @@ module.exports = api => {
                     },
                     extensions: ['.js', '.ts', '.tsx', '.ios.js', '.android.js']
                 }
-            ]
+            ],
+            '@babel/plugin-proposal-optional-chaining'
         ]
     };
 };

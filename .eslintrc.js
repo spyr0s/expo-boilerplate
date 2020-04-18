@@ -27,6 +27,11 @@ module.exports = {
     rules: {
         'no-shadow': 0,
         'react/jsx-props-no-spreading': 0,
-        'no-nested-ternary': 0
+        'no-nested-ternary': 0,
+        'class-methods-use-this': 0,
+        'no-console': ['error', { allow: ['warn', 'error'] }],
+        'import/no-cycle': 0,
+        radix: 0,
+        'react-hooks/exhaustive-deps': 0
     }
 };
