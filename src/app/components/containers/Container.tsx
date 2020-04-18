@@ -1,13 +1,16 @@
-import React, { PropsWithChildren, useContext } from 'react';
+import React, { PropsWithChildren, useContext, RefObject } from 'react';
 import {
     ScrollView,
-    SafeAreaView,
     StyleSheet,
-    ScrollViewProps
+    ScrollViewProps,
+    ViewProps,
+    View
 } from 'react-native';
 import { SPACING } from 'styles/sizes';
 import { ThemeContext, ThemeProps } from 'react-native-elements';
 import { Theme } from 'app/app/styles/themes';
+import { SafeAreaView } from 'react-navigation';
+import ScreenLoader from '../loaders/ScreenLoader';
 
 const styles = StyleSheet.create({
     safe: {
@@ -17,32 +20,57 @@ const styles = StyleSheet.create({
 
 export interface ContainerProps {
     withPadding?: boolean;
+    useScrollView?: boolean;
+    loading?: boolean;
 }
 
 export type Props = ContainerProps &
     ScrollViewProps &
+    ViewProps &
     PropsWithChildren<ContainerProps>;
-const Container = (props: Props) => {
-    const { withPadding, children, contentContainerStyle } = props;
-    const padding = withPadding ? SPACING.medium : 0;
+export type Ref = ScrollView | View;
+const Container = (props: Props, ref: RefObject<any>) => {
+    const {
+        withPadding,
+        useScrollView,
+        children,
+        contentContainerStyle,
+        style,
+        loading
+    } = props;
+    const hasPadding = withPadding === undefined ? true : withPadding;
+    const withScrollView = useScrollView === undefined ? true : useScrollView;
+    const padding = hasPadding ? SPACING.medium : 0;
     const { theme } = useContext(ThemeContext) as ThemeProps<Theme>;
     const backgroundColor = theme.colors.surface;
+    const element = withScrollView ? (
+        <ScrollView
+            ref={ref}
+            keyboardShouldPersistTaps="handled"
+            {...props}
+            contentContainerStyle={[
+                { backgroundColor },
+                { padding },
+                contentContainerStyle
+            ]}
+        >
+            {children}
+        </ScrollView>
+    ) : (
+        <View
+            ref={ref}
+            keyboardShouldPersistTaps="handled"
+            style={[styles.safe, style, { backgroundColor }]}
+            {...props}
+        >
+            {children}
+        </View>
+    );
     return (
         <SafeAreaView style={[styles.safe, { backgroundColor }]}>
-            <ScrollView
-                contentContainerStyle={[
-                    contentContainerStyle,
-                    { backgroundColor },
-                    { padding }
-                ]}
-                {...props}
-            >
-                {children}
-            </ScrollView>
+            {element}
+            {loading && <ScreenLoader />}
         </SafeAreaView>
     );
 };
-Container.defaultProps = {
-    withPadding: true
-};
-export default Container;
+export default React.forwardRef<Ref, Props>(Container);

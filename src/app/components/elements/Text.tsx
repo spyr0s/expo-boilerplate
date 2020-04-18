@@ -8,7 +8,14 @@ import {
 import { LINE_HEIGHT, FONT_SIZE } from 'styles/sizes';
 import { Theme } from 'app/app/styles/themes';
 
-export type TextStyle = 'nano' | 'small' | 'normal' | 'large' | 'larger';
+export type TextStyle =
+    | 'nano'
+    | 'small'
+    | 'normal'
+    | 'large'
+    | 'larger'
+    | 'title'
+    | 'doubleTitle';
 
 export interface TextProps {
     textStyle?: TextStyle;
@@ -47,6 +54,16 @@ const getStyle = (textStyle: TextStyle) => {
             return {
                 fontSize: FONT_SIZE.larger,
                 lineHeight: LINE_HEIGHT.larger
+            };
+        case 'title':
+            return {
+                fontSize: FONT_SIZE.larger * 1.3,
+                lineHeight: LINE_HEIGHT.larger * 1.5
+            };
+        case 'doubleTitle':
+            return {
+                fontSize: FONT_SIZE.larger * 1.5,
+                lineHeight: LINE_HEIGHT.larger * 3
             };
     }
 };
