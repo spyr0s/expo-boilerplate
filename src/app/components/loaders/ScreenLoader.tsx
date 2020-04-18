@@ -29,7 +29,7 @@ const ScreenLoader = ({ size }: ScreenLoaderProps) => {
         <View
             style={[styles.container, { backgroundColor: colors.background }]}
         >
-            <ActivityIndicator size={size} color={colors.onSurface} />
+            <ActivityIndicator size={size} color={colors.primary} />
         </View>
     );
 };

@@ -31,7 +31,7 @@ export interface Theme extends RNETheme {
 }
 
 export const light: ThemeColors = {
-    primary: '#82a6ed',
+    primary: '#ed1c24',
     primaryVariant: '#370083',
     secondary: '#03DAC6',
     secondaryVarian: '#018786',
@@ -46,7 +46,7 @@ export const light: ThemeColors = {
 };
 
 export const dark: ThemeColors = {
-    primary: '#082a4d',
+    primary: '#ed1c24',
     primaryVariant: '#370083',
     secondary: '#03DAC6',
     secondaryVarian: '#018786',

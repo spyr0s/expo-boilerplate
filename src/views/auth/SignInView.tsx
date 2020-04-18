@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationStackScreenProps } from 'react-navigation-stack';
+import Container from 'app/app/components/containers/Container';
 
 export interface SignInViewNavParams {}
 export interface SignInViewProps {}
@@ -23,7 +24,11 @@ class SignInView extends React.Component<Props, State> {
     }
 
     render() {
-        return null;
+        return (
+            <>
+                <Container />
+            </>
+        );
     }
 }
 

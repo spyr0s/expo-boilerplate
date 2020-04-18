@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import { NavigationStackScreenProps } from 'react-navigation-stack';
 import Container from 'app/app/components/containers/Container';
 import ScreenLoader from 'app/app/components/loaders/ScreenLoader';
+import Constants from 'app/app/Constants';
 
 export interface AuthCheckNavParams {}
 export interface AuthCheckProps {}
 
-interface StateProps {}
+interface StateProps {
+    user;
+}
 
 interface DispatchProps {}
 
@@ -24,6 +27,13 @@ class AuthCheck extends React.Component<Props, State> {
         this.state = {};
     }
 
+    componentDidMount() {
+        const { user, navigation } = this.props;
+        if (!user) {
+            navigation.navigate(Constants.Navigation.Auth.SIGN_IN);
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -34,7 +44,10 @@ class AuthCheck extends React.Component<Props, State> {
 }
 
 const mapStateToProps = () => {
-    return {};
+    const user = null;
+    return {
+        user
+    };
 };
 
 const mapDispatchToProps = () => {

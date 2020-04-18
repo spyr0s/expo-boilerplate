@@ -9,6 +9,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import AuthCheck from 'app/views/auth/AuthCheck';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
+import Constants from '../Constants';
 
 export interface NavParams {
     id?: number;
@@ -28,9 +29,9 @@ const MainStack = createStackNavigator(
 
 const Router = createSwitchNavigator(
     {
-        authLoad: AuthCheck,
-        auth: AuthStack,
-        mainStack: MainStack
+        [Constants.Navigation.Auth.CHECK]: AuthCheck,
+        [Constants.Navigation.Auth.STACK]: AuthStack,
+        [Constants.Navigation.Main.STACK]: MainStack
     },
     {
         initialRouteName: 'authLoad'
