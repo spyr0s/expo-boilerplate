@@ -1,0 +1,51 @@
+{
+    "expo": {
+        "name": "mySeries",
+        "slug": "mySeries",
+        "privacy": "public",
+        "sdkVersion": "36.0.0",
+        "platforms": ["ios", "android", "web"],
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "packagerOpts": {
+            "config": "metro.config.js",
+            "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.kremalagame.series"
+        },
+        "android": {
+            "package": "com.kremalagame.series",
+            "versionCode": 1             
+        },
+        "userInterfaceStyle": "automatic",
+        "extra" :{
+            "sentry" :{
+                "dsn":"Sentry DSN"              
+            }
+        },
+        "hooks": {
+            "postPublish": [
+                {
+                    "file": "sentry-expo/upload-sourcemaps",
+                    "config": {
+                        "organization": "your organization's short name here",
+                        "project": "your project name here",
+                        "authToken": "your auth token here"                        
+                    }
+                }
+            ]
+        }
+    }
+}

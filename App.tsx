@@ -14,7 +14,7 @@ import * as en from 'app/app/tranlsations/english.json';
 import * as el from 'app/app/tranlsations/greek.json';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import { createTheme, light, dark } from 'app/app/styles/themes';
+import { createTheme } from 'app/app/styles/themes';
 
 export default () => {
     i18n.fallbacks = true;
@@ -36,7 +36,7 @@ export default () => {
             persist.store.dispatch(appStarted());
         }
     );
-    const theme = createTheme(scheme === 'dark' ? dark : light);
+    const theme = createTheme(scheme);
     return (
         <Provider store={persist.store}>
             <PersistGate persistor={persist.persistor}>

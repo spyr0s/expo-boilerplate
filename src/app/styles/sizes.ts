@@ -13,15 +13,17 @@ export const LINE_HEIGHT = {
     larger: 27
 };
 export const SPACING = {
-    small: 10,
+    small: 5,
+    normal: 10,
     medium: 20,
     large: 30,
     larger: 40
 };
 
 export const ICON_SIZE = {
-    small: 14,
+    small: 12,
+    normal: 14,
     medium: 18,
-    normal: 22,
-    big: 26
+    big: 22,
+    bigger: 26
 };
