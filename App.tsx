@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
-import { appStarted } from 'redx/app/actions';
+import { StatusBar, YellowBox } from 'react-native';
+import { appStarted, setLocale } from 'app/app/redux/app/actions';
 import { enableScreens } from 'react-native-screens';
 import { Persistor } from 'redux-persist';
 import configureStore from 'app/app/redux/store';
-import { BPInitialState } from 'app/app/redux/redux';
+
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Appearance } from 'react-native-appearance';
@@ -15,41 +15,70 @@ import * as el from 'app/app/tranlsations/greek.json';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import { createTheme } from 'app/app/styles/themes';
+import Storage from 'app/services/storage/Storage';
+import moment from 'moment';
+import 'moment/min/locales';
+import { AppInitialState } from 'app/app/redux/redux';
 
+// const { dsn } = Constants.manifest.extra.sentry;
+// Sentry.init({
+//     dsn,
+//     enableInExpoDevelopment: true,
+//     debug: true
+// });
 export default () => {
+    YellowBox.ignoreWarnings(['Setting a timer']);
+
     i18n.fallbacks = true;
     i18n.translations = { el, en };
-    i18n.locale = Localization.locale;
     enableScreens();
     const [scheme, setScheme] = React.useState(Appearance.getColorScheme());
-    useEffect(() => {
-        const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-            setScheme(colorScheme);
-        });
-        return function cleanup() {
-            subscription.remove();
-        };
-    });
-    const persist: { store: any; persistor: Persistor } = configureStore(
-        BPInitialState,
-        () => {
-            persist.store.dispatch(appStarted());
-        }
-    );
+    const [persist, setPersist] = React.useState(null);
+    const [ready, setReady] = React.useState(false);
     const theme = createTheme(scheme);
-    return (
+
+    const init = async persist => {
+        return Promise.all([
+            Storage.getItem(Storage.KEY_THEME).then(scheme => {
+                const currentScheme = scheme || Appearance.getColorScheme();
+                setScheme(currentScheme);
+            }),
+            Storage.getItem(Storage.KEY_LOCALE).then(locale => {
+                const loc = locale || Localization.locale;
+                i18n.locale = loc;
+                moment.locale(loc);
+                persist.store.dispatch(setLocale(loc));
+            })
+        ]);
+    };
+
+    useEffect(() => {
+        Storage.getItem(Storage.KEY_THEME).then(scheme => {
+            const currentScheme = scheme || Appearance.getColorScheme();
+            setScheme(currentScheme);
+        });
+    }, [theme]);
+
+    useEffect(() => {
+        const persist: { store: any; persistor: Persistor } = configureStore(
+            AppInitialState,
+            () => {
+                persist.store.dispatch(appStarted());
+            }
+        );
+        setPersist(persist);
+        init(persist).then(() => {
+            setReady(true);
+        });
+    }, []);
+    return ready ? (
         <Provider store={persist.store}>
             <PersistGate persistor={persist.persistor}>
-                <StatusBar
-                    showHideTransition="slide"
-                    barStyle={
-                        scheme === 'dark' ? 'light-content' : 'dark-content'
-                    }
-                />
+                <StatusBar showHideTransition="fade" barStyle="light-content" />
                 <ThemeProvider theme={theme}>
                     <Navigator />
                 </ThemeProvider>
             </PersistGate>
         </Provider>
-    );
+    ) : null;
 };

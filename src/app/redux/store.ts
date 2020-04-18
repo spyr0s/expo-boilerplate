@@ -4,14 +4,14 @@ import { AsyncStorage } from 'react-native';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { apiMiddleware } from 'redux-api-middleware';
-import reducer, { BPState } from './redux';
+import reducer, { AppState } from './redux';
 
 const loggerMiddleware = createLogger({
     duration: true,
     timestamp: false
 });
 
-const persistConfig: PersistConfig<BPState> = {
+const persistConfig: PersistConfig<AppState> = {
     key: 'root',
     storage: AsyncStorage
 };

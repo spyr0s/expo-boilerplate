@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
-import { app, initialAppState, AppState } from './app/reducers';
+import {
+    app,
+    initialAppState as initialApplicationState,
+    ApplicationState
+} from './app/reducers';
 
-export interface BPState {
-    app: AppState;
+export interface AppState {
+    app: ApplicationState;
 }
-export const BPInitialState: BPState = {
-    app: initialAppState
+export const AppInitialState: AppState = {
+    app: initialApplicationState
 };
 const state = combineReducers({
     app

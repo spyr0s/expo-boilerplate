@@ -1,14 +1,17 @@
 import { APP_STARTED, AppAction } from 'app/app/redux/app/actions';
 
-export interface AppState {
+export interface ApplicationState {
     appStarted: boolean;
 }
 
-export const initialAppState: AppState = {
+export const initialAppState: ApplicationState = {
     appStarted: false
 };
 
-export function app(state: AppState = initialAppState, action: AppAction) {
+export function app(
+    state: ApplicationState = initialAppState,
+    action: AppAction
+) {
     switch (action.type) {
         case APP_STARTED: {
             return { ...state, appStarted: action.payload.appStarted };
