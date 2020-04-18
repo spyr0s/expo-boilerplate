@@ -43,8 +43,8 @@ class AuthCheck extends React.Component<Props, State> {
     }
 }
 
-const mapStateToProps = () => {
-    const user = null;
+const mapStateToProps = state => {
+    const user = state?.auth?.user;
     return {
         user
     };
