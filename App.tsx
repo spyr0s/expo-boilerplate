@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StatusBar, YellowBox } from 'react-native';
+import { YellowBox } from 'react-native';
 import { appStarted, setLocale } from 'app/app/redux/app/actions';
 import { enableScreens } from 'react-native-screens';
 import { Persistor } from 'redux-persist';
@@ -74,7 +74,6 @@ export default () => {
     return ready ? (
         <Provider store={persist.store}>
             <PersistGate persistor={persist.persistor}>
-                <StatusBar showHideTransition="fade" barStyle="light-content" />
                 <ThemeProvider theme={theme}>
                     <Navigator />
                 </ThemeProvider>

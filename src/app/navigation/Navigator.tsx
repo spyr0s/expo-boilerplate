@@ -7,6 +7,8 @@ import {
 
 import { createStackNavigator } from 'react-navigation-stack';
 import AuthCheck from 'app/views/auth/AuthCheck';
+import { StatusBar } from 'react-native';
+import { useSelector } from 'react-redux';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 import Constants from '../Constants';
@@ -48,4 +50,18 @@ class AppNavigator extends React.Component<NavigationInjectedProps> {
 }
 
 const App = createAppContainer(AppNavigator);
-export default App;
+const AppNav = () => {
+    const scheme = useSelector((state: any) => state.app.scheme);
+    return (
+        <>
+            <StatusBar
+                backgroundColor="transparent"
+                showHideTransition="fade"
+                barStyle={scheme === 'dark' ? 'light-content' : 'dark-content'}
+            />
+            <App theme={scheme} />
+        </>
+    );
+};
+
+export default AppNav;
